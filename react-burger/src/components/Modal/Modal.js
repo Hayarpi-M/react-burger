@@ -40,7 +40,7 @@ const Modal = ({title, onClose, children}) => {
     ),
     modalRoot
     );
-}
+}   
 
 Modal.propTypes = {
     title: PropTypes.string,
