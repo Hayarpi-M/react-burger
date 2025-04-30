@@ -1,0 +1,14 @@
+ul {
+    list-style: none;
+}
+.container {
+    max-width: 550px;
+    margin: auto;
+}
+.nutrition {
+    display: flex;
+    justify-content: space-between;
+}
+.nutritionItem {
+    text-align: center;
+}

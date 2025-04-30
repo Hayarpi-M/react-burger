@@ -1,0 +1,41 @@
+.containerIngred {
+    padding: 0 20px;
+    max-width: 47%;
+}
+.scrollY {
+    height: 65vh;
+    overflow-y: auto;
+    border-radius: 0;
+    scrollbar-color: #8585AD #2F2F37;
+    
+}
+.scrollY::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+.scrollY::-webkit-scrollbar {
+    width: 12px;
+    background: transparent;
+    border-radius: 0;
+}
+.scrollY::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border-radius: 0px;
+}
+.scrollY::-webkit-scrollbar-button {
+    height: 0;
+    display: none;
+    background: transparent;
+}
+.ingredientGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
