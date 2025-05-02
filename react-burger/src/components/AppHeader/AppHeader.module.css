@@ -1,4 +1,16 @@
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+}
 .flexBox {
     display: flex; 
     align-items: center;
+    padding: 0;
+}
+.marginR20 {
+    margin-right: 20px;
+}
+.colorPurple {
+    color: #8585AD;
 }

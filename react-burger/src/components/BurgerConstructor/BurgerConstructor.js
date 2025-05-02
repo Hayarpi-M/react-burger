@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import { useState} from 'react';
 import PropTypes from 'prop-types';
 import styles from './BurgerConstructor.module.css';
 import OrderDetails from '../OrderDetails/OrderDetails';
@@ -14,7 +14,7 @@ const BurgerConstructor = () => {
         setOrder(null);
     };
     return (
-        <div className={styles.wrapper}>
+        <section className={styles.wrapper}>
             <div className={styles.constructor}>
                 <div className={styles.lockedItem}>
                     <ConstructorElement
@@ -95,7 +95,7 @@ const BurgerConstructor = () => {
                     <OrderDetails data={order} />
                 </Modal>
             )}
-        </div>
+        </section>
     );
 };
 

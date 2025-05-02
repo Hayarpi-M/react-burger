@@ -1,4 +1,19 @@
 .App {
+  max-width: 1240px;
+  margin: 0 auto;
   text-align: center;
   padding: 0 20px;
+}
+.app-title {
+  text-align: left;
+}
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .app-wrapper {
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+  }
 }
