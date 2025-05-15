@@ -15,7 +15,7 @@ const OrderDetails = ({ orderNumber }) => {
             <p className="text text_type_main-default mb-1">
                 Ваш заказ начали готовить
             </p>
-            <p className="text text_type_main-default" style={{color: '#8585AD'}}>
+            <p className={`text text_type_main-default ${styles.textColorSecondary}`}>
                 Дождитесь готовности на орбитальной станции
             </p>
         </div>

@@ -28,7 +28,7 @@ const Modal = ({title, onClose, children}) => {
             <div className={styles.wrapper}>
                 <div className={styles.wrapperTop}>
                     <h3 className="text text_type_main-large">{title}</h3>   
-                    <div onClick={onClose} style={{ cursor: 'pointer' }}>
+                    <div onClick={onClose} className={styles.cursor}>
                         <CloseIcon type="primary" />
                     </div>
                 </div>

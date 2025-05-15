@@ -34,6 +34,7 @@ DraggableIngredient.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default DraggableIngredient;

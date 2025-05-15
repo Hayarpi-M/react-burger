@@ -20,8 +20,7 @@ const BurgerIngredients = () => {
         if (ingredient.type === 'bun') {
             return bun?._id === ingredient._id ? 2 : 0;
         }
-         return ingredients.length+2;
-       // return ingredients.filter(item => item._id === ingredient._id).length;
+        return ingredients.filter(item => item._id === ingredient._id).length;
     };
 
     const bunRef = useRef(null);
@@ -91,7 +90,7 @@ const BurgerIngredients = () => {
     return (
         <section className={styles.containerIngred}>
 
-            <div style={{ display: 'flex' }} className="mb-10">
+            <div className={`mb-10 ${styles.tabWrapper}`}>
                 <Tab value="bun" active={current === 'bun'} onClick={handleTabClick}>
                     Булки
                 </Tab>
@@ -103,7 +102,7 @@ const BurgerIngredients = () => {
                 </Tab>
             </div>
 
-            <div className={styles.scrollY} ref={scrollContainerRef} style={{ overflowY: 'auto', maxHeight: '400px' }}>
+            <div className={styles.scrollY} ref={scrollContainerRef}>
                     
                         <IngredientSection
                             title="Булки"

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './BunPreview.module.css';
 
 const BunPreview = ({ bun, type }) => {
   return (
-    <div style={{ padding: '4px 8px' }}>
+    <div className={styles.bunPreviewWrapper}>
       <ConstructorElement
         type={type}
         isLocked={true}

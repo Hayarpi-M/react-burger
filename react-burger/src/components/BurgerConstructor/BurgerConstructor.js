@@ -43,11 +43,8 @@ const BurgerConstructor = () => {
   };
 
   useEffect(() => {
-    if (allIngredients.length) {
-      const firstBun = allIngredients.find(item => item.type === 'bun');
-      if (firstBun) {
-        dispatch(addIngredient(firstBun));
-      }
+    if (  !allIngredients.length) {
+      <>'Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа.'</>
     }
   }, [allIngredients, dispatch]);
 
@@ -90,8 +87,14 @@ const BurgerConstructor = () => {
   
 
   return (
-    <section className={styles.wrapper} style={{padding:'10px'}}>
-      <div ref={dropRef} className={styles.constructor} style={{  minHeight: '70%', minWidth: "100%" }} >
+    <section className={styles.wrapper}>
+      <div ref={dropRef} className={styles.constructor} >
+        { (!bun && ingredients.length === 0) ? (
+            <p className={`text text_type_main-default text_color_inactive ${styles.constructorText}`}  style={{ textAlign: 'center', padding: '20px' }}>
+              Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа.
+            </p>
+          ) : (
+        <>    
         {bun && (
           <div className={styles.lockedItem}>
             <BunPreview type="top" bun={bun} />
@@ -114,6 +117,8 @@ const BurgerConstructor = () => {
           <div className={styles.lockedItem}>
             <BunPreview type="bottom" bun={bun} />
           </div>
+        )}
+        </>
         )}
       </div>
 
