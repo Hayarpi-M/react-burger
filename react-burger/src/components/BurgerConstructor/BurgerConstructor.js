@@ -90,7 +90,7 @@ const BurgerConstructor = () => {
     <section className={styles.wrapper}>
       <div ref={dropRef} className={styles.constructor} >
         { (!bun && ingredients.length === 0) ? (
-            <p className={`text text_type_main-default text_color_inactive ${styles.constructorText}`}  style={{ textAlign: 'center', padding: '20px' }}>
+            <p className={`text text_type_main-default text_color_inactive ${styles.constructorText}`}>
               Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа.
             </p>
           ) : (
