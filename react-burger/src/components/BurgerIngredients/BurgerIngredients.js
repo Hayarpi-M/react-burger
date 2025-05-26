@@ -1,72 +1,96 @@
-import { useState, useEffect, useRef  } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import styles from './BurgerIngredients.module.css';
-//import { ingredients } from '../../utils/data';
-import { BASE_URL } from '../../utils/constants';
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
-import IngredientCard from './IngredientCard/IngredientCard';
 import IngredientSection from './IngredientSection/IngredientSection';
+import { getIngredients } from '../../services/actions/BurgerIngredients';
+
 
 const BurgerIngredients = () => {
+    const dispatch = useDispatch();
+    const { items, itemsRequest, itemsFailed } = useSelector((state) => state.ingredients);
     const [current, setCurrent] = useState('bun');
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasError, setHasError] = useState(false);
     const [selectedIngredient, setSelectedIngredient] = useState(null);
-    const handleIngredientClick = (ingredient) => {
-        setSelectedIngredient(ingredient);
+    const constructorItems = useSelector(state => state.constructors);
+    const { bun, ingredients } = constructorItems;
+
+    const getCount = (ingredient) => {
+        if (ingredient.type === 'bun') {
+            return bun?._id === ingredient._id ? 2 : 0;
+        }
+        return ingredients.filter(item => item._id === ingredient._id).length;
     };
-    const closeModal = () => {
-        setSelectedIngredient(null);
-    };
+
     const bunRef = useRef(null);
     const sauceRef = useRef(null);
     const mainRef = useRef(null);
+    const scrollContainerRef = useRef(null);
+
     const handleTabClick = (section) => {
         setCurrent(section);
-        if(section === "bun") bunRef.current.scrollIntoView({ behavior: 'smooth' });
+        if(section === "bun") (bunRef.current.scrollIntoView({ behavior: 'smooth' }));
         if(section === "sauce") sauceRef.current.scrollIntoView({ behavior: 'smooth' });
         if(section === "main") mainRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
-
     useEffect(() => {
-        getIngredients();
-    }, []);
+        dispatch(getIngredients());
+    }, [dispatch]);
+   
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!bunRef.current || !sauceRef.current || !mainRef.current || !scrollContainerRef.current) return;
+            console.log('handleScroll function running...');
+            const scrollTop = scrollContainerRef.current.getBoundingClientRect().top;
 
-    const getIngredients = async () => {
-        setIsLoading(true);
-        setHasError(false);
-        try {
-        //const res = await fetch('https://norma.nomoreparties.space/api/ingredients');
-        const res = await fetch(`${BASE_URL}/ingredients`);
-        const json = await res.json();
-        setData(json.data);
-        } catch (e) {
-        setHasError(true);
-        } finally {
-        setIsLoading(false);
-        }
+            const bunTop = Math.abs(bunRef.current.getBoundingClientRect().top - scrollTop);
+            const sauceTop = Math.abs(sauceRef.current.getBoundingClientRect().top - scrollTop);
+            const mainTop = Math.abs(mainRef.current.getBoundingClientRect().top - scrollTop);
+
+            const min = Math.min(bunTop, sauceTop, mainTop);
+
+            if (min === bunTop) {
+                console.log(bunTop);
+                setCurrent('bun');
+            } else if (min === sauceTop) {
+                console.log(sauceTop);
+                setCurrent('sauce');
+            } else {
+                console.log('main');
+                setCurrent('main');
+            }
+        };
+        
+
+        const container = scrollContainerRef.current;
+        if (!container) return;
+        container.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            container.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrollContainerRef.current]);
+
+    const handleIngredientClick = (ingredient) => {
+        setSelectedIngredient(ingredient);
     };
 
+    const closeModal = () => {
+        setSelectedIngredient(null);
+    };
 
     const filteredIngredients = (type) =>
-        data.filter((item) => item.type === type);
-
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
-    if (hasError) {
-        return <p>Ошибка загрузки ингредиентов</p>;
-    }
+        (items || []).filter((item) => item.type === type);
+    
+    if (itemsRequest) return <p>Loading...</p>;
+    if (itemsFailed) return <p>Ошибка загрузки ингредиентов</p>;
 
     return (
         <section className={styles.containerIngred}>
 
-            <div style={{ display: 'flex' }} className="mb-10">
+            <div className={`mb-10 ${styles.tabWrapper}`}>
                 <Tab value="bun" active={current === 'bun'} onClick={handleTabClick}>
                     Булки
                 </Tab>
@@ -78,31 +102,35 @@ const BurgerIngredients = () => {
                 </Tab>
             </div>
 
-            <div className={styles.scrollY}>
-                    <>
+            <div className={styles.scrollY} ref={scrollContainerRef}>
+                    
                         <IngredientSection
                             title="Булки"
                             items={filteredIngredients('bun')}
                             sectionRef={bunRef}
                             onClick={handleIngredientClick}
+                            draggable
+                            getCount={getCount}
                         />
-                    </>
-                    <>
+                    
                         <IngredientSection
                             title="Соусы"
                             items={filteredIngredients('sauce')}
                             sectionRef={sauceRef}
                             onClick={handleIngredientClick}
+                            draggable
+                            getCount={getCount}
                         />
-                    </>
-                    <>
+                    
                         <IngredientSection
                             title="Начинки"
                             items={filteredIngredients('main')}
                             sectionRef={mainRef}
                             onClick={handleIngredientClick}
+                            draggable
+                            getCount={getCount}
                         />
-                    </>
+                   
             </div>
             {selectedIngredient && (
                 <Modal title="Детали ингредиента" onClose={closeModal}>
@@ -113,18 +141,6 @@ const BurgerIngredients = () => {
         </section>
     );
 };
-
-IngredientCard.propTypes = {
-    item: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-    }).isRequired,
-    onClick: PropTypes.func.isRequired,
-  };
-  
 
 export default BurgerIngredients;
 

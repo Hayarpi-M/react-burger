@@ -2,12 +2,16 @@
     margin-right: 30px;
     max-width: 49%;
 }
+.tabWrapper {
+    display: flex;
+}
 .scrollY {
     height: 65vh;
     overflow-y: auto;
     border-radius: 0;
     scrollbar-color: #8585AD #2F2F37;
-    
+    max-height: 400px;
+    overflow-y: auto;
 }
 .scrollY::-webkit-scrollbar-track {
     background: transparent;

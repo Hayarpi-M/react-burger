@@ -4,18 +4,20 @@
     align-items: center;
     margin-left: 30px;
     width: 49%;
+    padding: 10px;
 }
-
 .constructor {
     display: flex;
     flex-direction: column;
     border-radius: 20px;
 }
-
 .lockedItem {
     margin: 10px 0;
 }
-
+.constructorText {
+    text-align: center;
+    padding: 20px;
+}
 .scroll {
     max-height: 50vh;
     overflow-y: auto;

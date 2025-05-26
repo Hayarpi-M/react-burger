@@ -5,6 +5,7 @@
     margin: 10px;
     max-width: 255px;
     margin-bottom: 30px;
+    position: relative;
 }
 .priceWrapper {
     display: flex;
