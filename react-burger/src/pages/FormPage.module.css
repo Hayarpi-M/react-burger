@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+.form {
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 480px;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
+.input {
+  background: #2a2a2a;
+  border: none;
+  width: -webkit-fill-available;
+  padding: 20px 24px;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+}
+
+.button {
+  background: linear-gradient(90deg, #7c3aed, #5d47f5);
+  color: white;
+  border: none;
+  padding: 16px;
+  width: 254px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  margin: auto  ;
+}
+
+.button:hover {
+  box-shadow: 0 0 10px #5d47f5;
+}
+
+.footer {
+  text-align: center;
+  color: #ccc;
+  font-size: 16px;
+}
+
+.link {
+  color: #5d47f5;
+  text-decoration: none;
+}
+.footerSecond {
+  margin-top: -20px;
+}

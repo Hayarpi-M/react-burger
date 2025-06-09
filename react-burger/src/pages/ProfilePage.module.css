@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  padding: 20% 0;
+  min-height: 80vh;
+  justify-content: center;
+}
+
+.sidebar {
+  width: 320px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.link {
+  color: #8585AD;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.activeLink {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.caption {
+  margin-top: 40%;
+  text-align: left;
+  font-size: 16px;
+}
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start; /* or center */
+  justify-content: flex-start;
+}

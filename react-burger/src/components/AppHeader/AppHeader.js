@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from './AppHeader.module.css'
 
@@ -22,10 +23,10 @@ const Menu = () => {
 
 const Profile = () => {
     return (
-        <div className={`${headerStyles.flexBox} ${headerStyles.colorPurple}`}>
+        <Link to="/profile" className={`${headerStyles.flexBox} ${headerStyles.colorPurple}`}>
             <ProfileIcon className='mr-2' type="secondary" />
             <span className="text text_type_main-default">Личный кабинет</span>
-        </div>
+        </Link>
     );
 }
 
