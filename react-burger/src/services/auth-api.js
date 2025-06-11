@@ -1,11 +1,11 @@
-import {BASE_URL} from '../utils/constants';
+import {BASE_URL, checkResponse} from '../utils/constants';
 
 export const registerRequest = (email, password, name) => {
   return fetch(`${BASE_URL}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password, name }),
-  }).then(res => res.json());
+  }).then(checkResponse);
 };
 
 export const loginRequest = (email, password) => {
@@ -13,7 +13,7 @@ export const loginRequest = (email, password) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
-  }).then(res => res.json());
+  }).then(checkResponse);
 };
 
 export const logoutRequest = (refreshToken) => {
@@ -21,7 +21,7 @@ export const logoutRequest = (refreshToken) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: refreshToken }),
-  }).then(res => res.json());
+  }).then(checkResponse);
 };
 
 export const refreshTokenRequest = (refreshToken) => {
@@ -29,5 +29,5 @@ export const refreshTokenRequest = (refreshToken) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: refreshToken }),
-  }).then(res => res.json());
+  }).then(checkResponse);
 };

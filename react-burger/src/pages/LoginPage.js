@@ -6,13 +6,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './FormPage.module.css';
 import { clearOrderIntent } from '../services/actions/orderIntent';
 import { makeOrder } from '../services/actions/Order';
+import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const location = useLocation(); 
   const from = location.state?.from?.pathname || '/';
   const tryOrder = location.state?.tryOrder;
@@ -26,13 +26,13 @@ const LoginPage = () => {
     console.log('orderIngredientIds:', orderIngredientIds);
 
     if (tryOrder && orderIngredientIds.length > 0) {
-      console.log('🔁 Placing order after login...');
+      console.log('Placing order after login...');
       dispatch(makeOrder(orderIngredientIds));
       dispatch(clearOrderIntent());
       navigate('/', { replace: true }); // or open modal directly
     } else {
       console.log('➡️ Navigating to:', from);
-      navigate('/register');
+      navigate(from, { replace: true });
     }
   };
 
@@ -46,30 +46,22 @@ const LoginPage = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Вход</h2>
 
-        <input 
+        <Input 
           type="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => {setEmail(e.target.value)}}
-          className={styles.input}
+          extraClass="mb-6"
           required
         />
         <div className={styles.passwordWrapper}>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Пароль"
+          <PasswordInput
             value={password}
-            className={styles.input}
+            name="password"
+            extraClass="mb-6"
             required
             onChange={(e) => {setPassword(e.target.value)}}
           />
-          <span 
-            className={styles.togglePassword}
-            role='button'
-            onClick={() => setShowPassword(!showPassword)}  
-          >
-            👁️
-          </span>
         </div>
         <button type="submit" className={styles.button}>
           Войти

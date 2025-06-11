@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { register } from '../services/actions/auth';
 import { useNavigate } from 'react-router-dom';
 import styles from './FormPage.module.css';
-
+import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function RegisterPage() {
   const [name, setName] = useState('');
@@ -52,45 +52,33 @@ function RegisterPage() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Регистрация</h2>
 
-        <input
+        <Input
           type="text"
           placeholder="Имя"
-          className={styles.input}
           value={name}
           onChange={(e) => setName(e.target.value)}
+          name="name"
           required
         />
 
-        <input
+        <Input
           type="email"
           placeholder="E-mail"
-          className={styles.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          name="email"
           required
         />
 
-        <div className={styles.passwordWrapper}>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Пароль"
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <span
-            className={styles.togglePassword}
-            onClick={() => setShowPassword(!showPassword)}
-            role="button"
-          >
-            👁️
-          </span>
-        </div>
+        <PasswordInput
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+        />
 
-        <button type="submit" className={styles.button}>
+        <Button htmlType="submit" type="primary" size="medium">
           Зарегистрироваться
-        </button>
+        </Button>
 
         <p className={styles.footer}>
           Уже зарегистрированы?{' '}

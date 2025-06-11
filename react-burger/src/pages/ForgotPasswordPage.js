@@ -3,6 +3,7 @@ import styles from './FormPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../services/actions/auth';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 
@@ -22,7 +23,8 @@ const ForgotPasswordPage = () => {
     setLoading(false);
 
     if (result.success) {
-      navigate('/reset-password', { state: { email } });
+      navigate('/reset-password' );
+      console.log(result)
     } else {
       setError(result.message);
     }
@@ -33,19 +35,19 @@ const ForgotPasswordPage = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Восстановление пароля</h2>
 
-        <input
+        <Input
           type="email"
           placeholder="Укажите e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
+          name="email"
           required
         />
         {error && <p className={styles.error}>{error}</p>}
 
-        <button type='submit' className={styles.button} disabled={loading}>
-          {loading? 'Отправка...' : 'Восстановить'}
-        </button>
+        <Button type="primary" size="medium" htmlType="submit" disabled={loading}>
+          {loading ? 'Отправка...' : 'Восстановить'}
+        </Button>
 
         <p className={styles.text}>
           Вспомнили пароль?{' '}

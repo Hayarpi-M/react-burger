@@ -4,13 +4,16 @@ import {
   LOGOUT_SUCCESS,
   AUTH_FAILED,
   GET_USER_SUCCESS,
-  UPDATE_USER_SUCCESS
-} from '../actions/auth';
+  UPDATE_USER_SUCCESS,
+  RESET_PASSWORD_COMPLETE,
+  FORGOT_PASSWORD_SUCCESS
+} from '../actions/auth'; 
 
 const initialState = {
   user: null,
   isAuthenticated: false, 
   isAuthChecked: false,
+  canResetPassword: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -36,14 +39,31 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         user: null,
         isAuthenticated: false, 
-        isAuthChecked: false,
+        isAuthChecked: true,
       };
     case AUTH_FAILED:
       return {
         ...state,
         user: null,
-        isAuthChecked: false,
+        isAuthenticated: false,
+        isAuthChecked: true,
       };
+    case FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        canResetPassword: true,
+        resetEmail: action.payload.email, 
+      };
+    case RESET_PASSWORD_COMPLETE:
+      return {
+        ...state,
+        canResetPassword: false,
+      };
+      case 'AUTH_CHECKED':
+        return {
+          ...state,
+          isAuthChecked: true,
+        };
     default:
       return state;
   }

@@ -19,9 +19,6 @@ const ProfilePage = () => {
   };
   
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
 
   /*if (!user) {
     return <p>Loading...</p>;

@@ -34,14 +34,14 @@
   position: relative;
 }
 
-.togglePassword {
+/*.togglePassword {
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   color: white;
-}
+}*/
 
 .button {
   background: linear-gradient(90deg, #7c3aed, #5d47f5);

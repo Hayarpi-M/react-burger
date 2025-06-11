@@ -3,6 +3,7 @@ import styles from './ProfileForm.module.css';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getUser, updateUser } from '../../services/actions/auth';
 
 const ProfileForm = () => {
@@ -15,10 +16,6 @@ const ProfileForm = () => {
     email: false,
     password: false
   });
-
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -51,32 +48,54 @@ const ProfileForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {['name', 'email', 'password'].map((field) => (
-        <div className={styles.inputGroup} key={field}>
-          <div className={styles.inputWrapper}>
-            <label className={`${styles.floatingLabel} ${editable[field] ? styles.active : ''}`}>
-              {field === 'name' ? 'Имя' : field === 'email' ? 'Логин' : 'Пароль'}
-            </label>
-            <input
-              type={field === 'password' ? 'password' : 'text'}
-              name={field}
-              value={formData[field]}
-              onChange={handleChange}
-              readOnly={!editable[field]}
-              onFocus={() => toggleEdit(field)}
-              onBlur={() => toggleEdit(field)}
-              className={styles.input}
-            />
-            <button type="button" onClick={() => toggleEdit(field)} className={styles.iconButton}>
-              <FiEdit2 />
-            </button>
-          </div>
+      <div className={styles.inputGroup}>
+        <div className={styles.inputWrapper}>
+          <Input
+            type="text"
+            placeholder="Имя"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            icon="EditIcon"
+            disabled={!editable.name}
+            onIconClick={() => toggleEdit('name')}
+          />
         </div>
-      ))}
+      </div>
+      <div className={styles.inputGroup}>
+        <div className={styles.inputWrapper}>
+          <Input
+            type="email"
+            placeholder="Логин"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            icon="EditIcon"
+            disabled={!editable.email}
+            onIconClick={() => toggleEdit('email')}
+          />
+        </div>
+      </div>
+      <div className={styles.inputGroup}>
+        <div className={styles.inputWrapper}>
+          <PasswordInput
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            icon="EditIcon"
+            disabled={!editable.password}
+            onIconClick={() => toggleEdit('password')}
+          />
+        </div>
+      </div>
       {isFormChanged && (
         <div className={styles.buttonGroup}>
-          <button type="submit" className={styles.button}>Сохранить</button>
-          <button type="button" onClick={handleCancel} className={styles.buttonSecondary}>Отмена</button>
+          <Button htmlType="submit" type="primary" size="medium">
+            Сохранить
+          </Button>
+          <Button htmlType="button" type="secondary" size="medium" onClick={handleCancel}>
+            Отмена
+          </Button>
         </div>
       )}
     </form>

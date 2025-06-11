@@ -8,9 +8,15 @@
     align-items: center;
     padding: 0;
 }
-.marginR20 {
+.constructIcon {
     margin-right: 20px;
+    color: #8585AD;
+    text-decoration: none;
 }
 .colorPurple {
     color: #8585AD;
+    text-decoration: none;
+}
+.activeLink {
+    color: #fff;
 }

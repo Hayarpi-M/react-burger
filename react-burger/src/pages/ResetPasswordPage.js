@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import styles from './FormPage.module.css';
 import { Link } from 'react-router-dom';
 import {BASE_URL} from '../utils/constants';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RESET_PASSWORD_COMPLETE } from '../services/actions/auth';
+import { Input, PasswordInput,Button} from '@ya.praktikum/react-developer-burger-ui-components';
+
 
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState('');
@@ -9,6 +15,16 @@ const ResetPasswordPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const canResetPassword = useSelector((state) => state.auth.canResetPassword);
+  const email = useSelector((state) => state.auth.resetEmail);
+
+  useEffect(() => {
+    if (!canResetPassword) {
+      navigate('/forgot-password');
+    }
+  }, [canResetPassword, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +43,8 @@ const ResetPasswordPage = () => {
       const data = await response.json();
 
       if(data.success) {
+        dispatch({ type: RESET_PASSWORD_COMPLETE }); 
+        navigate('/login');
         console.log("Password successfully reset")
       } else {
         setError(data.message || 'Ошибка сброса пароля');
@@ -44,38 +62,27 @@ const ResetPasswordPage = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Восстановление пароля</h2>
 
-        <div className={styles.passwordWrapper}>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Введите новый пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
-            required
-          />
-          <span
-            className={styles.togglePassword}
-            role="button"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            👁️
-          </span>
-        </div>
+        <PasswordInput
+          value={password}
+          name="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Введите новый пароль"
+        />
 
-        <input
+        <Input
           type="text"
           placeholder="Введите код из письма"
           value={code}
+          name="code"
           onChange={(e) => setCode(e.target.value)}
-          className={styles.input}
           required
         />
 
         {error && <p className={styles.error}>{error}</p>}
 
-        <button type="submit" className={styles.button} disabled={loading}>
-          {loading? 'Сохранение...' : 'Сохранить'}
-        </button>
+        <Button htmlType="submit" type="primary" size="medium" disabled={loading}>
+          {loading ? 'Сохранение...' : 'Сохранить'}
+        </Button>
 
         <p className={styles.footer}>
           Вспомнили пароль?

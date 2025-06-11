@@ -13,6 +13,8 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const AUTH_FAILED = 'AUTH_FAILED';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_COMPLETE = 'RESET_PASSWORD_COMPLETE';
 
 export const register = (email, password, name) => {
   return function (dispatch) {
@@ -80,10 +82,15 @@ export const refreshToken = () => {
         if (res.success) {
           setCookie('accessToken', res.accessToken.split('Bearer ')[1]);
           localStorage.setItem('refreshToken', res.refreshToken);
+          dispatch(getUser()); 
+          return res;
         }
       })
       .catch(() => {
         dispatch({ type: AUTH_FAILED });
+      })
+      .finally(()=>{
+        dispatch({ type: 'AUTH_CHECKED' })
       });
   };
 };
@@ -103,10 +110,9 @@ export const forgotPassword = (email) => async (dispatch) => {
     const data = await response.json();
 
     if (data.success) {
-      // optional: dispatch({ type: 'FORGOT_PASSWORD_SUCCESS' });
+      dispatch({ type: FORGOT_PASSWORD_SUCCESS,  payload: { email } });
       return { success: true };
     } else {
-      // optional: dispatch({ type: 'FORGOT_PASSWORD_ERROR' });
       return { success: false, message: data.message || 'Ошибка при восстановлении пароля' };
     }
   } catch (error) {
@@ -115,9 +121,14 @@ export const forgotPassword = (email) => async (dispatch) => {
 };
 
 export const getUser = () => {
-  return function (dispatch) {
+  return function (dispatch, getState) {
     const token = getCookie('accessToken');
     if (!token) return;
+
+    const state = getState();
+    if (state.auth.user) {
+      return; // already loaded
+    }
 
     fetch(`${BASE_URL}/auth/user`, {
       method: 'GET',
@@ -129,11 +140,15 @@ export const getUser = () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
+          console.log('✅ getUser response:', data.user);
           dispatch({ type: GET_USER_SUCCESS, payload: data.user });
         }
       })
       .catch(() => {
         dispatch({ type: AUTH_FAILED });
+      })
+      .finally(()=>{
+        dispatch({ type: 'AUTH_CHECKED' })
       });
   };
 };

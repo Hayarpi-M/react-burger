@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import { removeIngredient } from '../../services/actions/BurgerConstructor';
 import { makeOrder } from '../../services/actions/Order';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {setOrderIntent} from '../../services/actions/orderIntent'
+import {setOrderIntent} from '../../services/actions/orderIntent';
+import { getCookie } from '../../utils/cookies';
 
 // inside the component
 import {
@@ -32,11 +33,11 @@ const BurgerConstructor = () => {
   const orderNumber = order?.number;
   const navigate = useNavigate();
   const location = useLocation();
-  const user = useSelector((state) => state.auth.user);
-  const isAuthenticated = !!user;
+  const isAuthenticated = !!getCookie('accessToken');
   
 
   const handleOrderClick = () => {
+    console.log("handleOrderClick triggered, isAuthenticated:", isAuthenticated);
     const ingredientIds = ingredients.map(item => item._id);
     
     if (bun) {

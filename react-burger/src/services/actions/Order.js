@@ -19,7 +19,7 @@ export const makeOrder = (ids) => async (dispatch, getState) => {
         body: JSON.stringify({ ingredients: ids }),
       });
 
-      const data = await checkResponse(response); // uses your custom `checkResponse` function
+      const data = await checkResponse(response); 
       console.log('Order API Response:', data);
       
       if (data && data.order && data.order.number) {

@@ -20,6 +20,7 @@ export const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         isModalOpen: false,
+        order: null,
       };
     default:
       return state;
