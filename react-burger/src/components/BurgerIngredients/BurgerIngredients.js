@@ -6,15 +6,17 @@ import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import IngredientSection from './IngredientSection/IngredientSection';
 import { getIngredients } from '../../services/actions/BurgerIngredients';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 const BurgerIngredients = () => {
     const dispatch = useDispatch();
     const { items, itemsRequest, itemsFailed } = useSelector((state) => state.ingredients);
     const [current, setCurrent] = useState('bun');
-    const [selectedIngredient, setSelectedIngredient] = useState(null);
     const constructorItems = useSelector(state => state.constructors);
     const { bun, ingredients } = constructorItems;
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const getCount = (ingredient) => {
         if (ingredient.type === 'bun') {
@@ -74,12 +76,10 @@ const BurgerIngredients = () => {
     }, [scrollContainerRef.current]);
 
     const handleIngredientClick = (ingredient) => {
-        setSelectedIngredient(ingredient);
+        navigate(`/ingredients/${ingredient._id}`, { state: { background: location } });
     };
 
-    const closeModal = () => {
-        setSelectedIngredient(null);
-    };
+   
 
     const filteredIngredients = (type) =>
         (items || []).filter((item) => item.type === type);
@@ -132,12 +132,7 @@ const BurgerIngredients = () => {
                         />
                    
             </div>
-            {selectedIngredient && (
-                <Modal title="Детали ингредиента" onClose={closeModal}>
-                   
-                    <IngredientDetails ingredient={selectedIngredient} />
-                </Modal>
-            )}
+        
         </section>
     );
 };

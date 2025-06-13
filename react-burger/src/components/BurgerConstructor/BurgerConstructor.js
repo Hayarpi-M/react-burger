@@ -5,6 +5,9 @@ import update from 'immutability-helper';
 import { useEffect } from 'react'; 
 import { removeIngredient } from '../../services/actions/BurgerConstructor';
 import { makeOrder } from '../../services/actions/Order';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {setOrderIntent} from '../../services/actions/orderIntent';
+import { getCookie } from '../../utils/cookies';
 
 // inside the component
 import {
@@ -26,20 +29,29 @@ const BurgerConstructor = () => {
   const { bun, ingredients = [] } = useSelector((state) => state.constructors);
   console.log(useSelector((state) => state.constructors))
   const allIngredients = useSelector((state) => state.ingredients.items);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { order, orderRequest, orderFailed } = useSelector((state) => state.order);
+  const { order, orderRequest, orderFailed, isModalOpen } = useSelector((state) => state.order);
   const orderNumber = order?.number;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isAuthenticated = !!getCookie('accessToken');
+  
 
   const handleOrderClick = () => {
+    console.log("handleOrderClick triggered, isAuthenticated:", isAuthenticated);
     const ingredientIds = ingredients.map(item => item._id);
-
+    
     if (bun) {
       ingredientIds.unshift(bun._id);
       ingredientIds.push(bun._id);
     }
 
+    if (!isAuthenticated) {
+      dispatch(setOrderIntent(ingredientIds));
+      navigate('/login', { state: { from: location, tryOrder: true } });
+      return;
+    }
+
     dispatch(makeOrder(ingredientIds));
-    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -81,8 +93,8 @@ const BurgerConstructor = () => {
   }, [bun, ingredients]);
 
   const closeModal = () => {
-    setIsModalOpen(false);
-    dispatch(clearConstructor()); // if not needed after i can delete this line
+    dispatch({ type: 'CLOSE_ORDER_MODAL' });
+    dispatch(clearConstructor()); 
   };
   
 

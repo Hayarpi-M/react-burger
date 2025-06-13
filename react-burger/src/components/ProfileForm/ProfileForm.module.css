@@ -1,0 +1,72 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup label {
+  color: #8585AD;
+  font-size: 16px;
+}
+
+.inputGroup input {
+  background-color: #2f2f37;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+.inputGroup input:read-only {
+  cursor: default;
+}
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #2f2f37;
+  color: #8585AD;
+  padding: 8px;
+  border-radius: 34px;
+}
+.inputWrapper input {
+  background-color: transparent;
+  border: none;
+  padding: 24px 0 0 16px;
+  color: #8585AD;
+  font-size: 16px;
+  flex-grow: 1;
+}
+.floatingLabel {
+  position: absolute;
+  left: 24px;
+  top: 17px;
+  transform: translateY(-50%);
+  color: #8585ad;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+.iconButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 16px;
+}
+.button, .buttonSecondary {
+  background: none;
+  color: #fff;
+  text-decoration: underline;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

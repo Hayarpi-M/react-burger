@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {store} from './services/store';
 import { DndProvider } from 'react-dnd';
@@ -13,11 +14,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <DndProvider backend={HTML5Backend}>
-        <App />
-      </DndProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <DndProvider backend={HTML5Backend}>
+          <App />
+        </DndProvider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

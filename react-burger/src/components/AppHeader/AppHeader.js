@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from './AppHeader.module.css'
 
@@ -8,24 +9,30 @@ import headerStyles from './AppHeader.module.css'
 const Menu = () => {
     return (
         <ul className={headerStyles.flexBox}>
-            <li className={`${headerStyles.flexBox} ${headerStyles.marginR20}`} >
-                <BurgerIcon className='mr-2' />
+            <NavLink to="/" className={({ isActive }) =>
+                        `${headerStyles.flexBox} ${headerStyles.constructIcon} ${isActive ? headerStyles.activeLink : headerStyles.inactiveLink}`
+                    } >
+                <BurgerIcon className='mr-2' type={window.location.pathname === "/" ? "primary" : "secondary"}/>
                 <span className="text text_type_main-default">Конструктор</span>
-            </li>
-            <li className={`${headerStyles.flexBox} ${headerStyles.colorPurple}`}>
-                <ListIcon className='mr-2' type="secondary" />
+            </NavLink>
+            <NavLink to="/orders" className={({ isActive }) =>
+                        `${headerStyles.flexBox} ${headerStyles.colorPurple} ${isActive ? headerStyles.activeLink : headerStyles.inactiveLink}`
+                    }>
+                <ListIcon className='mr-2' type={window.location.pathname.startsWith("/order") ? "primary" : "secondary"} />
                 <span className="text text_type_main-default">Лента заказов</span>
-            </li>
+            </NavLink>
         </ul>
     );
 }
 
 const Profile = () => {
     return (
-        <div className={`${headerStyles.flexBox} ${headerStyles.colorPurple}`}>
-            <ProfileIcon className='mr-2' type="secondary" />
+        <NavLink to="/profile" className={({ isActive }) =>
+                `${headerStyles.flexBox} ${headerStyles.colorPurple} ${isActive ? headerStyles.activeLink : headerStyles.inactiveLink}`
+            }>
+            <ProfileIcon className='mr-2' type={window.location.pathname.startsWith("/profile") ? "primary" : "secondary"} />
             <span className="text text_type_main-default">Личный кабинет</span>
-        </div>
+        </NavLink>
     );
 }
 
