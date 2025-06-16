@@ -2,7 +2,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent  } from 'react';
 import styles from './FormPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import {BASE_URL} from '../utils/constants';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { RESET_PASSWORD_COMPLETE } from '../services/actions/auth';
 import { Input, PasswordInput,Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import { RootState } from '../services/reducers/index';
@@ -16,8 +17,8 @@ const ResetPasswordPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
-  const canResetPassword = useSelector((state: RootState) => state.auth.canResetPassword);
+  const dispatch = useAppDispatch();
+  const canResetPassword = useAppSelector((state) => state.auth.canResetPassword);
   //const email = useSelector((state: RootState) => state.auth.resetEmail);
 
   useEffect(() => {

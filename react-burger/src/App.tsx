@@ -14,7 +14,8 @@ import ProfilePage from './pages/ProfilePage';
 import IngredientPage from './pages/IngredientPage'; 
 import IngredientDetailsFromRoute from './components/IngredientDetailsFromRoute'
 import Modal from './components/Modal/Modal';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from './hooks/redux-hooks';
 import ProfileForm from './components/ProfileForm/ProfileForm';
 import OrderDetails from './components/OrderDetails/OrderDetails';
 import type { RootState } from './services/reducers/index';
@@ -23,12 +24,12 @@ type LocationState = {
   background?: Location;
 };
 function App() {
-  const canReset = useSelector((state: RootState) => state.auth.canResetPassword);
+  const canReset = useAppSelector((state) => state.auth.canResetPassword);
   const location = useLocation() as Location & { state: LocationState };
   const navigate = useNavigate();
   const background = location.state && location.state.background;
-  const dispatch:AppDispatch  = useDispatch();
-  const isAuthChecked = useSelector((state:RootState) => state.auth.isAuthChecked);
+  const dispatch = useAppDispatch();
+  const isAuthChecked = useAppSelector((state) => state.auth.isAuthChecked);
  
 
   useEffect(() => {

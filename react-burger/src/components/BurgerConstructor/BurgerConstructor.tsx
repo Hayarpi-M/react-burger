@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from 'react';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useDrop } from 'react-dnd';
 import update from 'immutability-helper';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -27,12 +28,13 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktiku
 import styles from './BurgerConstructor.module.css';
 
 const BurgerConstructor: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+  //const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { bun, ingredients = [] } = useSelector((state:RootState) => state.constructors);
-  const allIngredients = useSelector((state:RootState) => state.ingredients.items);
-  const { order, isModalOpen } = useSelector((state: RootState) => state.order);
+  const { bun, ingredients = [] } = useAppSelector((state) => state.constructors);
+  const allIngredients = useAppSelector((state) => state.ingredients.items);
+  const { order, isModalOpen } = useAppSelector((state) => state.order);
   const orderNumber = order?.number;
   const isAuthenticated = Boolean(getCookie('accessToken'));
   

@@ -1,15 +1,17 @@
 import { useState, useEffect, ChangeEvent, FormEvent  } from 'react';
 import styles from './ProfileForm.module.css';
 import { FiEdit2 } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getUser, updateUser } from '../../services/actions/auth';
 import { RootState } from '../../services/reducers/index';
 import { AppDispatch } from '../../services/store';
 
 const ProfileForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector((state: RootState) => state.auth.user);
+  //const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [originalData, setOriginalData] = useState({name: '', email: '', password: '',});
   const [editable, setEditable] = useState({

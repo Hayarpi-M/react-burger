@@ -1,3 +1,4 @@
+import { ITokenRefreshResponse } from '../auth-api';
 import {
   registerRequest,
   loginRequest,
@@ -95,7 +96,7 @@ export const refreshToken = () => {
     const refreshToken = localStorage.getItem('refreshToken');
     if (!refreshToken) return;
     refreshTokenRequest(refreshToken)
-      .then((res: AuthResponse) => {
+      .then((res: ITokenRefreshResponse) => {
         if (res.success) {
           setCookie('accessToken', res.accessToken.split('Bearer ')[1]);
           localStorage.setItem('refreshToken', res.refreshToken);

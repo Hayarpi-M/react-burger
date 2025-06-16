@@ -10,8 +10,8 @@ export const getIngredients = () => (dispatch: AppDispatch): void => {
   dispatch({ type: GET_INGREDIENTS_REQUEST });
 
   fetch(`${BASE_URL}/ingredients`)
-    .then(checkResponse)
-    .then((data: { data: TIngredient[] }) => {
+    .then(checkResponse<{ data: TIngredient[] }>)
+    .then((data) => {
       dispatch({ type: GET_INGREDIENTS_SUCCESS, payload: data.data });
     })
     .catch(() => {

@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { NavLink, Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import ProfileForm from '../components/ProfileForm/ProfileForm';
 import OrderDetails from '../components/OrderDetails/OrderDetails';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { logout } from '../services/actions/auth';
 import styles from './ProfilePage.module.css';
 import { getUser } from '../services/actions/auth';
@@ -10,8 +11,8 @@ import { RootState } from '../services/reducers/index';
 import { AppDispatch } from '../services/store';
 
 const ProfilePage = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
-  const dispatch = useDispatch<AppDispatch>();
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogout = async () => {

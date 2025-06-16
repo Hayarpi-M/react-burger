@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, RefObject } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerIngredients.module.css';
 import Modal from '../Modal/Modal';
@@ -13,10 +14,11 @@ import { AppDispatch } from '../../services/store';
 
 
 const BurgerIngredients: React.FC = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { items, itemsRequest, itemsFailed } = useSelector((state: RootState) => state.ingredients);
+    //const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
+    const { items, itemsRequest, itemsFailed } = useAppSelector((state) => state.ingredients);
     const [current, setCurrent] = useState('bun');
-    const constructorItems = useSelector((state: RootState) => state.constructors);
+    const constructorItems = useAppSelector((state) => state.constructors);
     const { bun, ingredients } = constructorItems;
     const navigate = useNavigate();
     const location = useLocation();

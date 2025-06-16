@@ -1,5 +1,6 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { Link, useLocation, useNavigate, Location } from 'react-router-dom';
 import { login } from '../services/actions/auth';
 import styles from './FormPage.module.css';
@@ -15,7 +16,7 @@ interface ILocationState {
 }
 
 const LoginPage: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +25,7 @@ const LoginPage: React.FC = () => {
   const state = location.state as ILocationState;
   const from = state?.from?.pathname || '/';
   const tryOrder = state?.tryOrder;
-  const orderIngredientIds = useSelector((state: RootState) => state.orderIntent.ingredientIds);
+  const orderIngredientIds = useAppSelector((state) => state.orderIntent.ingredientIds);
 
 
   const handleLoginSuccess = () => {

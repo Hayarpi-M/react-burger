@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
+import { useAppSelector } from '../hooks/redux-hooks';
 import IngredientDetails from './IngredientDetails/IngredientDetails';
 import { RootState } from '../services/reducers/index';
 import { TIngredient } from '../types/ingredients'
 
 const IngredientDetailsFromRoute: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const ingredient = useSelector((state:RootState) =>
+  const ingredient = useAppSelector((state) =>
     state.ingredients.items.find((item:TIngredient) => item._id === id)
   );
 

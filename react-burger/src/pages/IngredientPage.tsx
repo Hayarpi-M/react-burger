@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
 import { useEffect } from 'react';
 import { getIngredients } from '../services/actions/BurgerIngredients';
@@ -9,11 +10,12 @@ import { TIngredient } from '../types/ingredients';
 
 const IngredientPage: React.FC  = () => {
   const { id } = useParams<{id: string}>();
-  const dispatch = useDispatch<AppDispatch>();
+  //const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
-  const items = useSelector((state: RootState) => state.ingredients.items);
-  const itemsRequest = useSelector((state: RootState) => state.ingredients.itemsRequest);
-  const itemsFailed = useSelector((state: RootState) => state.ingredients.itemsFailed);
+  const items = useAppSelector((state) => state.ingredients.items);
+  const itemsRequest = useAppSelector((state) => state.ingredients.itemsRequest);
+  const itemsFailed = useAppSelector((state) => state.ingredients.itemsFailed);
 
   // Загружаем ингредиенты, если их ещё нет
   useEffect(() => {

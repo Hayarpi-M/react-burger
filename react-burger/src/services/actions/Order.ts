@@ -22,7 +22,11 @@ export interface IMakeOrderFailedAction {
   type: typeof MAKE_ORDER_FAILED;
   error?: string;
 }
-
+export interface IMakeOrderResponse {
+  success: boolean;
+  name: string;
+  order: TOrder;
+}
 export type TOrderActions =
   | IMakeOrderRequestAction
   | IMakeOrderSuccessAction
@@ -45,7 +49,7 @@ export const makeOrder = (ids: string[]) => async (dispatch:Dispatch<TOrderActio
         body: JSON.stringify({ ingredients: ids }),
       });
 
-      const data = await checkResponse(response); 
+      const data = await checkResponse<IMakeOrderResponse>(response); 
       console.log('Order API Response:', data);
       
       if (data && data.order && data.order.number) {

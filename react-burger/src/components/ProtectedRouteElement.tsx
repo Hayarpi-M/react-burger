@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
+import { useAppSelector } from '../hooks/redux-hooks';
 import { ReactNode } from 'react';
 import { RootState } from '../services/reducers';
 
@@ -9,9 +10,9 @@ interface ProtectedRouteElementProps {
 }
 
 const ProtectedRouteElement: React.FC<ProtectedRouteElementProps> = ({ onlyUnAuth = false, children }) => {
-  const isAuth = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
-  const isAuthChecked = useSelector((state: RootState) => state.auth.isAuthChecked);
+  const isAuthChecked = useAppSelector((state) => state.auth.isAuthChecked);
 
   if (!isAuthChecked) {
     return null; // or loader if you want

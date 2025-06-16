@@ -1,7 +1,8 @@
 import React, { useState, FormEvent, ChangeEvent  } from 'react';
 import styles from './FormPage.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../hooks/redux-hooks';
 import { forgotPassword } from '../services/actions/auth';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { AppDispatch } from '../services/store';
@@ -11,7 +12,8 @@ const ForgotPasswordPage: React.FC  = () => {
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
-  const dispatch = useDispatch<AppDispatch>();
+  //const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

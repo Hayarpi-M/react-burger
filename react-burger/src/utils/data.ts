@@ -1,4 +1,5 @@
-export const ingredients = [
+import { TIngredient } from '../types/ingredients';
+export const ingredients: TIngredient[] = [
     {
        "_id":"60666c42cc7b410027a1a9b1",
        "name":"Краторная булка N-200i",
@@ -11,7 +12,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/bun-02.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/bun-02-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/bun-02-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b5",
@@ -25,7 +26,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/meat-04.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/meat-04-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/meat-04-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b6",
@@ -39,7 +40,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/meat-01.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/meat-01-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/meat-01-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b7",
@@ -53,7 +54,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/sauce-02.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/sauce-02-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b4",
@@ -67,7 +68,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/meat-02.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/meat-02-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/meat-02-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b9",
@@ -81,7 +82,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/sauce-03.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/sauce-03-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/sauce-03-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b8",
@@ -95,7 +96,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/sauce-04.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/sauce-04-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9bc",
@@ -109,7 +110,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/sp_1.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/sp_1-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/sp_1-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9bb",
@@ -123,7 +124,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/mineral_rings.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/mineral_rings-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9ba",
@@ -137,7 +138,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/sauce-01.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/sauce-01-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9bd",
@@ -151,7 +152,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/core.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/core-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/core-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9be",
@@ -165,7 +166,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/salad.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/salad-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/salad-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b3",
@@ -179,7 +180,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/meat-03.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/meat-03-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/meat-03-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9bf",
@@ -193,7 +194,7 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/cheese.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/cheese-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/cheese-large.png",
-       "__v":0
+       
     },
     {
        "_id":"60666c42cc7b410027a1a9b2",
@@ -207,6 +208,6 @@ export const ingredients = [
        "image":"https://code.s3.yandex.net/react/code/bun-01.png",
        "image_mobile":"https://code.s3.yandex.net/react/code/bun-01-mobile.png",
        "image_large":"https://code.s3.yandex.net/react/code/bun-01-large.png",
-       "__v":0
+       
     }
  ]
