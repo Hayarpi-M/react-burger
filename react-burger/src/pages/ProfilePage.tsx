@@ -7,8 +7,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { logout } from '../services/actions/auth';
 import styles from './ProfilePage.module.css';
 import { getUser } from '../services/actions/auth';
-import { RootState } from '../services/reducers/index';
-import { AppDispatch } from '../services/store';
+import { AppDispatch, RootState } from '../types/store';
 
 const ProfilePage = () => {
   const user = useAppSelector((state) => state.auth.user);

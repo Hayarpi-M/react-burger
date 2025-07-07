@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 //import { useSelector } from 'react-redux';
 import { useAppSelector } from '../hooks/redux-hooks';
 import IngredientDetails from './IngredientDetails/IngredientDetails';
-import { RootState } from '../services/reducers/index';
+import { RootState } from '../types/store';
 import { TIngredient } from '../types/ingredients'
 
 const IngredientDetailsFromRoute: React.FC = () => {

@@ -7,8 +7,7 @@ import styles from './FormPage.module.css';
 import { clearOrderIntent } from '../services/actions/orderIntent';
 import { makeOrder } from '../services/actions/Order';
 import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { RootState } from '../services/reducers/index';
-import { AppDispatch } from '../services/store';
+import { AppDispatch, RootState } from '../types/store';
 
 interface ILocationState {
   from?: Location;

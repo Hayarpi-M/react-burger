@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/redux-hooks';
 import { forgotPassword } from '../services/actions/auth';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { AppDispatch } from '../services/store';
+import { AppDispatch } from '../types/store';
 
 
 const ForgotPasswordPage: React.FC  = () => {

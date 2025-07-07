@@ -211,3 +211,14 @@ export const ingredients: TIngredient[] = [
        
     }
  ]
+
+ export const formatDate = (dateStr: string): string => {
+  const date = new Date(dateStr);
+  return date.toLocaleString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+};

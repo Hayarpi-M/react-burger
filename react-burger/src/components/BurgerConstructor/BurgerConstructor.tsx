@@ -21,8 +21,7 @@ import ConstructorItem from './ConstructorItem/ConstructorItem';
 import BunPreview from './BunPreview/BunPreview';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import { RootState } from '../../services/reducers';
-import { AppDispatch } from '../../services/store';
+import { AppDispatch, RootState } from '../../types/store';
 import { TIngredientConstructor, TIngredient } from '../../types/ingredients';
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.css';
@@ -34,7 +33,7 @@ const BurgerConstructor: React.FC = () => {
   const location = useLocation();
   const { bun, ingredients = [] } = useAppSelector((state) => state.constructors);
   const allIngredients = useAppSelector((state) => state.ingredients.items);
-  const { order, isModalOpen } = useAppSelector((state) => state.order);
+  const { order, isModalOpen, orderRequest } = useAppSelector((state) => state.order);
   const orderNumber = order?.number;
   const isAuthenticated = Boolean(getCookie('accessToken'));
   
@@ -140,15 +139,19 @@ const BurgerConstructor: React.FC = () => {
         <p className="text text_type_digits-medium mr-2">{totalPrice}</p>
         <CurrencyIcon type="primary" />
         <div className="ml-10">
-          <Button htmlType="button" type="primary" size="medium" onClick={handleOrderClick}>
-            Оформить заказ
+          <Button htmlType="button" type="primary" size="medium" onClick={handleOrderClick} disabled={orderRequest}>
+            {orderRequest ? 'Оформляется...' : 'Оформить заказ'}
           </Button>
         </div>
       </div>
 
-      {isModalOpen && orderNumber && (
+      {(orderRequest || (isModalOpen && orderNumber)) && (
         <Modal onClose={closeModal}>
-          <OrderDetails orderNumber={orderNumber} />
+          {orderRequest ? (
+            <p className="text text_type_main-medium p-10">⏳ Оформляем ваш заказ...</p>
+          ) : (
+            <OrderDetails orderNumber={orderNumber} />
+          )}
         </Modal>
       )}
     </section>

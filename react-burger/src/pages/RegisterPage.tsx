@@ -5,7 +5,7 @@ import { useAppDispatch } from '../hooks/redux-hooks';
 import { register } from '../services/actions/auth';
 import styles from './FormPage.module.css';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { AppDispatch } from '../services/store';
+import { AppDispatch } from '../types/store';
 
 function RegisterPage() {
   const [name, setName] = useState('');

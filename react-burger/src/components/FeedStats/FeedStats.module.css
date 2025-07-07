@@ -1,0 +1,11 @@
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.stats p {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}

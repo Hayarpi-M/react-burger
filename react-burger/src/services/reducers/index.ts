@@ -6,6 +6,7 @@ import { orderReducer } from './Order';
 import { authReducer } from './auth';
 import {resetReducer} from './reset';
 import { orderIntentReducer } from './orderIntent';
+import { wsReducer } from './wsReducer';
 
 export const rootReducer = combineReducers({
   ingredients: burgerIngredientsReducer,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   auth: authReducer,
   reset: resetReducer,
   orderIntent: orderIntentReducer,
+  wsProfile: wsReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+//export type RootState = ReturnType<typeof rootReducer>;

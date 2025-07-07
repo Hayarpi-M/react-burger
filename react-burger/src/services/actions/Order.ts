@@ -2,8 +2,8 @@ import { Dispatch } from 'redux';
 import { BASE_URL, checkResponse  } from '../../utils/constants';
 import { TIngredient } from '../../types/ingredients';
 import { TOrder } from '../../types/order';
-import { AppDispatch } from '../store';
-import { RootState } from '../reducers/index';
+import { RootState, AppDispatch } from '../../types/store';
+import { getCookie } from '../../utils/cookies';
 
 export const MAKE_ORDER_REQUEST = 'MAKE_ORDER_REQUEST';
 export const MAKE_ORDER_SUCCESS = 'MAKE_ORDER_SUCCESS';
@@ -37,7 +37,12 @@ export const makeOrder = (ids: string[]) => async (dispatch:Dispatch<TOrderActio
     dispatch({ type: MAKE_ORDER_REQUEST });
 
     const state = getState();
-    const token = state.auth?.user?.accessToken; 
+    //const token = state.auth?.user?.accessToken; 
+    const token =
+      state.auth?.user?.accessToken ||
+      getCookie('accessToken') ||
+      localStorage.getItem('accessToken') ||
+      '';
 
     try {
       const response = await fetch(`${BASE_URL}/orders`, {
@@ -50,7 +55,8 @@ export const makeOrder = (ids: string[]) => async (dispatch:Dispatch<TOrderActio
       });
 
       const data = await checkResponse<IMakeOrderResponse>(response); 
-      console.log('Order API Response:', data);
+      console.log('✅ Order success:', data.order.number);
+
       
       if (data && data.order && data.order.number) {
         dispatch({ type: MAKE_ORDER_SUCCESS, payload: data.order });

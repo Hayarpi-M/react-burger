@@ -5,8 +5,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getUser, updateUser } from '../../services/actions/auth';
-import { RootState } from '../../services/reducers/index';
-import { AppDispatch } from '../../services/store';
+import { AppDispatch, RootState } from '../../types/store';
 
 const ProfileForm = () => {
   //const dispatch = useDispatch<AppDispatch>();
