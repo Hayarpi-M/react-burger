@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'; 
 import styles from './OrderPage.module.css';
 import { RootState } from '../types/store';
 import { TOrder } from '../types/order';
@@ -14,7 +15,7 @@ import { getCookie } from '../utils/cookies';
 
 const OrderPageFromHistory = () => {
   const { number } = useParams<{ number: string }>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [fetchedOrder, setFetchedOrder] = useState<TOrder | null>(null);
   useEffect(() => {
     const token = localStorage.getItem('accessToken') ?? getCookie('accessToken');
@@ -26,8 +27,8 @@ const OrderPageFromHistory = () => {
       dispatch(wsProfileDisconnect());
     };
   }, [dispatch]);
-  const orders = useSelector((state: RootState) => state.wsProfile.profile.orders);
-  const ingredientsList = useSelector((state: RootState) => state.ingredients.items);
+  const orders = useAppSelector((state) => state.wsProfile.profile.orders);
+  const ingredientsList = useAppSelector((state) => state.ingredients.items);
   
   useEffect(() => {
     if (!ingredientsList || ingredientsList.length === 0) {

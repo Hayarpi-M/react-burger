@@ -3,9 +3,6 @@ import { useLocation, NavLink } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from './AppHeader.module.css'
 
-
-
-
 const Menu: React.FC = () => {
     const location = useLocation();
     return (

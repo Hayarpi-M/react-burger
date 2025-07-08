@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './OrderPage.module.css'; // Create or adjust styles if needed
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'; 
 import { wsConnect, wsDisconnect } from '../services/actions/wsAction';
 import { TIngredient } from '../types/ingredients';
 import { TOrder } from '../types/order';
@@ -13,7 +14,7 @@ const WS_URL = 'wss://norma.nomoreparties.space/orders/all';
 
 const OrderPageFromFeed = () => {
   const { number } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(wsConnect(WS_URL));
@@ -22,8 +23,8 @@ const OrderPageFromFeed = () => {
     };
   }, [dispatch]);
 
-  const orders: TOrder[] = useSelector((state: RootState) => state.wsProfile.public.orders);
-  const ingredients: TIngredient[] = useSelector((state: any) => state.ingredients.items);
+  const orders: TOrder[] = useAppSelector((state) => state.wsProfile.public.orders);
+  const ingredients: TIngredient[] = useAppSelector((state: any) => state.ingredients.items);
 
   const order = orders?.find((order: TOrder) => order.number === Number(number));
 

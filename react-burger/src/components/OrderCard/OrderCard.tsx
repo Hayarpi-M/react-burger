@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { FC, useMemo } from 'react';
 import { TIngredient } from '../../types/ingredients';
 import { TOrder } from '../../types/order';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks/redux-hooks'; 
 
 interface Props {
   order: TOrder;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const OrderCard: FC<Props> = ({ order, profileMode = false  }) => {
-  const ingredients: TIngredient[] = useSelector((state: any) => state.ingredients.items);
+  const ingredients: TIngredient[] = useAppSelector((state) => state.ingredients.items);
 
   const orderIngredients = useMemo(
     () => order.ingredients.map(id => ingredients.find(ing => ing._id === id)).filter(Boolean) as TIngredient[],

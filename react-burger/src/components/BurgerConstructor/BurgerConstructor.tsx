@@ -27,7 +27,6 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktiku
 import styles from './BurgerConstructor.module.css';
 
 const BurgerConstructor: React.FC = () => {
-  //const dispatch: AppDispatch = useDispatch();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();

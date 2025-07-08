@@ -2,7 +2,8 @@
 
 import { useEffect } from 'react';
 import styles from './OrdersHistoryPage.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'; 
 import { useNavigate, NavLink } from 'react-router-dom';
 import { wsProfileConnect, wsProfileDisconnect } from '../services/actions/wsAction';
 import OrderCard from '../components/OrderCard/OrderCard';
@@ -11,13 +12,13 @@ import { TOrder } from '../types/order';
 import { getCookie } from '../utils/cookies';
 
 const OrdersHistoryPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 //  const accessToken = getCookie('accessToken') || localStorage.getItem('accessToken');
   const accessToken = localStorage.getItem('accessToken') ?? getCookie('accessToken');
   //const accessToken = localStorage.getItem('refreshToken'); // token stored during login
 
-  const {orders} = useSelector((state: RootState) => state.wsProfile.profile);
+  const {orders} = useAppSelector((state) => state.wsProfile.profile);
 
   useEffect(() => {
     if (!accessToken) {

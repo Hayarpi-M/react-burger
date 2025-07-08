@@ -2,7 +2,8 @@
 
 import React, { useEffect } from 'react';
 import styles from './FeedPage.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'; 
 import { wsConnect, wsDisconnect } from '../services/actions/wsAction';
 import OrderCard from '../components/OrderCard/OrderCard';
 import OrderStatusList from '../components/OrderStatusList/OrderStatusList'; // renamed from OrderStats to OrderStatusList
@@ -11,9 +12,9 @@ import {RootState} from '../types/store';
 import { TOrder } from '../types/order';
 
 const FeedPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { orders, total, totalToday } = useSelector((state: RootState) => state.wsProfile.public);
+  const { orders, total, totalToday } = useAppSelector((state) => state.wsProfile.public);
 
   const doneOrders = orders?.filter((o: TOrder) => o.status === 'done').map((o: TOrder) => o.number).slice(0, 5) || [];
   const pendingOrders = orders?.filter((o: TOrder) => o.status === 'pending').map((o: TOrder) => o.number).slice(0, 5) || [];
