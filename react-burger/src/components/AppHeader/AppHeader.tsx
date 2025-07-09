@@ -3,9 +3,6 @@ import { useLocation, NavLink } from 'react-router-dom';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from './AppHeader.module.css'
 
-
-
-
 const Menu: React.FC = () => {
     const location = useLocation();
     return (
@@ -16,10 +13,10 @@ const Menu: React.FC = () => {
                 <BurgerIcon className='mr-2' type={location.pathname === "/" ? "primary" : "secondary"}/>
                 <span className="text text_type_main-default">Конструктор</span>
             </NavLink>
-            <NavLink to="/orders" className={({ isActive }) =>
-                        `${headerStyles.flexBox} ${headerStyles.colorPurple} ${isActive ? headerStyles.activeLink : headerStyles.inactiveLink}`
+            <NavLink to="/feed" className={({ isActive }) =>
+                        `${headerStyles.flexBox} ${headerStyles.colorPurple} ${location.pathname.startsWith('/feed')     ? headerStyles.activeLink : headerStyles.inactiveLink}`
                     }>
-                <ListIcon className='mr-2' type={location.pathname.startsWith("/order") ? "primary" : "secondary"} />
+                <ListIcon className='mr-2' type={location.pathname.startsWith("/feed") ? "primary" : "secondary"} />
                 <span className="text text_type_main-default">Лента заказов</span>
             </NavLink>
         </ul>

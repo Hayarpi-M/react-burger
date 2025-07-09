@@ -2,7 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 //import { useSelector } from 'react-redux';
 import { useAppSelector } from '../hooks/redux-hooks';
 import { ReactNode } from 'react';
-import { RootState } from '../services/reducers';
+import { RootState } from '../types/store';
 
 interface ProtectedRouteElementProps {
   onlyUnAuth?: boolean;

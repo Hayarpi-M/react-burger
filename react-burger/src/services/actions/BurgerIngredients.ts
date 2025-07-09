@@ -1,5 +1,5 @@
 import { BASE_URL, checkResponse } from '../../utils/constants';
-import { AppDispatch } from '../store';
+import { AppDispatch } from '../../types/store';
 import { TIngredient } from '../../types/ingredients';
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';

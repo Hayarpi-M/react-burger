@@ -6,8 +6,7 @@ import {BASE_URL} from '../utils/constants';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { RESET_PASSWORD_COMPLETE } from '../services/actions/auth';
 import { Input, PasswordInput,Button} from '@ya.praktikum/react-developer-burger-ui-components';
-import { RootState } from '../services/reducers/index';
-import { AppDispatch } from '../services/store';
+import { AppDispatch, RootState } from '../types/store';
 
 
 const ResetPasswordPage: React.FC = () => {

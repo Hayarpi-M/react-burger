@@ -9,8 +9,7 @@ import IngredientSection from './IngredientSection/IngredientSection';
 import { getIngredients } from '../../services/actions/BurgerIngredients';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { TIngredient } from '../../types/ingredients';
-import { RootState } from '../../services/reducers';
-import { AppDispatch } from '../../services/store';
+import { AppDispatch, RootState } from '../../types/store';
 
 
 const BurgerIngredients: React.FC = () => {

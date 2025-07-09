@@ -18,8 +18,13 @@ import Modal from './components/Modal/Modal';
 import { useAppDispatch, useAppSelector } from './hooks/redux-hooks';
 import ProfileForm from './components/ProfileForm/ProfileForm';
 import OrderDetails from './components/OrderDetails/OrderDetails';
-import type { RootState } from './services/reducers/index';
-import type { AppDispatch } from './services/store'
+import type { RootState, AppDispatch } from './types/store';
+import FeedPage from './pages/FeedPage';
+import OrderPageFromFeed from './pages/OrderPageFromFeed';
+import OrdersHistoryPage from './pages/OrdersHistoryPage';
+import OrderPageFromHistory from './pages/OrderPageFromHistory';
+
+
 type LocationState = {
   background?: Location;
 };
@@ -86,8 +91,19 @@ function App() {
           </ProtectedRouteElement>
         } >
           <Route index element={<ProfileForm />} />
-          <Route path="orders" element={<OrderDetails />} />
         </Route>
+        <Route path="/feed" element={<FeedPage />} />
+        <Route path="/feed/:number" element={<OrderPageFromFeed />} />
+        <Route path="/profile/orders" element={
+          <ProtectedRouteElement>
+            <OrdersHistoryPage />
+          </ProtectedRouteElement>
+        } />
+        <Route path="/profile/orders/:number" element={
+          <ProtectedRouteElement>
+            <OrderPageFromHistory />
+          </ProtectedRouteElement>
+        } />
       </Routes>
 
       {background && (
@@ -97,6 +113,22 @@ function App() {
             element={
               <Modal title="Детали ингредиента" onClose={handleCloseModal}>
                 <IngredientDetailsFromRoute />
+              </Modal>
+            }
+          />
+          <Route
+            path="/feed/:number"
+            element={
+              <Modal title="Детали заказа" onClose={handleCloseModal}>
+                <OrderPageFromFeed />
+              </Modal>
+            }
+          />
+          <Route
+            path="/profile/orders/:number"
+            element={
+              <Modal title="Детали заказа" onClose={handleCloseModal}>
+                <OrderPageFromHistory />
               </Modal>
             }
           />

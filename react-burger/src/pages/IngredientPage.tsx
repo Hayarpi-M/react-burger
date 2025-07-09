@@ -4,8 +4,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
 import { useEffect } from 'react';
 import { getIngredients } from '../services/actions/BurgerIngredients';
-import { RootState } from '../services/reducers/index';
-import { AppDispatch } from '../services/store';
+import { AppDispatch, RootState } from '../types/store';
 import { TIngredient } from '../types/ingredients'; 
 
 const IngredientPage: React.FC  = () => {

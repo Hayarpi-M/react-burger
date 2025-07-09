@@ -1,6 +1,8 @@
 export const setCookie = (name: string, value: string, days:number = 1) => {
   const expires = new Date(Date.now() + days * 86400e3).toUTCString();
   document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+  console.log('🍪 setCookie:', name, value);
+
 };
 
 export const getCookie = (name:string): string | undefined => {

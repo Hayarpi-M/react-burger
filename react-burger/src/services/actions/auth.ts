@@ -7,8 +7,7 @@ import {
 } from '../auth-api';
 import { setCookie, deleteCookie, getCookie } from '../../utils/cookies';
 import {BASE_URL} from '../../utils/constants';
-import { RootState } from '../reducers/index';
-import { AppDispatch } from '../store';
+import { AppDispatch, RootState } from '../../types/store';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -58,8 +57,8 @@ export const login = (email: string, password: string, callback?: () => void) =>
       const accessToken = res.accessToken.split('Bearer ')[1];
 
       setCookie('accessToken', accessToken);
+      localStorage.setItem('accessToken', res.accessToken.split('Bearer ')[1]); 
       localStorage.setItem('refreshToken', res.refreshToken);
-
       dispatch({ type: LOGIN_SUCCESS, payload: res });
 
       if (callback) {
@@ -99,6 +98,7 @@ export const refreshToken = () => {
       .then((res: ITokenRefreshResponse) => {
         if (res.success) {
           setCookie('accessToken', res.accessToken.split('Bearer ')[1]);
+          localStorage.setItem('accessToken', res.accessToken.split('Bearer ')[1]); 
           localStorage.setItem('refreshToken', res.refreshToken);
           dispatch(getUser()); 
           return res;
