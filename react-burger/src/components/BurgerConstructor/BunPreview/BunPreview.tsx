@@ -15,7 +15,9 @@ type BunPreviewProps = {
 
 const BunPreview: React.FC<BunPreviewProps> = ({ bun, type }) => {
   return (
-    <div className={styles.bunPreviewWrapper}>
+    <div className={styles.bunPreviewWrapper}
+      data-testid={type === 'top' ? 'constructor-bun-top' : 'constructor-bun-bottom'}
+    >
       <ConstructorElement
         type={type}
         isLocked={true}

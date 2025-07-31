@@ -100,7 +100,7 @@ const BurgerConstructor: React.FC = () => {
 
   return (
     <section className={styles.wrapper}>
-      <div ref={dropRef as unknown as React.Ref<HTMLDivElement>} className={styles.constructorBlock} >
+      <div  ref={dropRef as unknown as React.Ref<HTMLDivElement>} className={styles.constructorBlock} data-testid="constructor-dropzone" >
         { (!bun && ingredients.length === 0) ? (
             <p className={`text text_type_main-default text_color_inactive ${styles.constructorText}`}>
               Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа.

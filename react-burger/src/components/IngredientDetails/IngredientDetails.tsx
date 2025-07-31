@@ -11,7 +11,7 @@ const IngredientDetails: React.FC<IngredientDetailsProps> = ({ ingredient }) => 
         return null;
     }
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="ingredient-modal">
             <img src={ingredient.image_large} alt={ingredient.name}  />
             <h3 className="text text_type_main-medium mt-4">{ingredient.name}</h3>
             <ul className={styles.nutrition}>
