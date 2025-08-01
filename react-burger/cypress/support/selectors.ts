@@ -1,0 +1,11 @@
+export const INGREDIENT_BUN = '[data-testid="ingredient-bun"]';
+export const INGREDIENT_MAIN = '[data-testid="ingredient-main"]';
+export const INGREDIENT_SAUCE = '[data-testid="ingredient-sauce"]';
+export const INGREDIENT_MODAL = '[data-testid="ingredient-modal"]';
+export const MODAL_CLOSE = '[data-testid="modal-close"]';
+export const CONSTRUCTOR_DROPZONE = '[data-testid="constructor-dropzone"]';
+export const CONSTRUCTOR_BUN_TOP = '[data-testid="constructor-bun-top"]';
+export const CONSTRUCTOR_BUN_BOTTOM = '[data-testid="constructor-bun-bottom"]';
+export const CONSTRUCTOR_MAIN = '[data-testid="constructor-main"]';
+export const ORDER_MODAL = '[data-testid="order-modal"]';
+export const ORDER_CARD = '[data-testid="order-card"]';

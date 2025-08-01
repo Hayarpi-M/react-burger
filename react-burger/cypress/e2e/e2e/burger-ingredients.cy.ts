@@ -1,4 +1,9 @@
 /// <reference types="cypress" />
+import {INGREDIENT_BUN, 
+INGREDIENT_SAUCE, 
+INGREDIENT_MAIN, 
+INGREDIENT_MODAL, 
+MODAL_CLOSE} from '../../support/selectors';
 
 describe('Burger Ingredients UI', () => {
   beforeEach(() => {
@@ -12,37 +17,36 @@ describe('Burger Ingredients UI', () => {
     cy.contains('Соусы').should('exist');
     cy.contains('Начинки').should('exist');
 
-    cy.get('[data-testid="ingredient-bun"]').should('exist');
-    cy.get('[data-testid="ingredient-sauce"]').should('exist');
-    cy.get('[data-testid="ingredient-main"]').should('exist');
+    cy.get(INGREDIENT_BUN).should('exist');
+    cy.get(INGREDIENT_SAUCE).should('exist');
+    cy.get(INGREDIENT_MAIN).should('exist');
   });
 
   it('should switch tabs and scroll to correct section', () => {
     cy.contains('Соусы').click();
-    cy.wait(300); // allow scroll effect to apply
-    cy.get('[data-testid="ingredient-sauce"]').should('exist');
+    cy.wait(300);
+    cy.get(INGREDIENT_SAUCE).should('exist');
 
     cy.contains('Начинки').click();
     cy.wait(300);
-    cy.get('[data-testid="ingredient-main"]').should('exist');
+    cy.get(INGREDIENT_MAIN).should('exist');
 
     cy.contains('Булки').click();
     cy.wait(300);
-    cy.get('[data-testid="ingredient-bun"]').should('exist');
+    cy.get(INGREDIENT_BUN).should('exist');
   });
 
   it('should open ingredient modal on click and close it', () => {
-    cy.get('[data-testid="ingredient-bun"]').first().click();
+    cy.get(INGREDIENT_BUN).first().click();
 
     // Check modal opens
-    cy.get('[data-testid="ingredient-modal"]').should('exist');
+    cy.get(INGREDIENT_MODAL).should('exist');
 
-    // Check ingredient name/details inside modal
-    cy.get('[data-testid="ingredient-modal"]')
+    cy.get(INGREDIENT_MODAL)
       .should('contain.text', 'Краторная булка N-200i') 
 
     // Close modal
-    cy.get('[data-testid="modal-close"]').click();
-    cy.get('[data-testid="ingredient-modal"]').should('not.exist');
+    cy.get(MODAL_CLOSE).click();
+    cy.get(INGREDIENT_MODAL).should('not.exist');
   });
 });

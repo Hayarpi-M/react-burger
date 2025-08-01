@@ -1,3 +1,9 @@
+import {
+  ORDER_CARD,
+  ORDER_MODAL,
+  MODAL_CLOSE
+} from '../../support/selectors';
+
 describe('Feed Page - Order Details Modal', () => {
   beforeEach(() => {
     cy.intercept('GET', '**/*').as('all');
@@ -7,16 +13,16 @@ describe('Feed Page - Order Details Modal', () => {
   });
 
   it('should open order detail modal on clicking an order card', () => {
-    cy.get('[data-testid="order-card"]').first().click();
-    cy.get('[data-testid="order-modal"]').should('exist');
-    cy.get('[data-testid="order-modal"]').should('contain.text', 'Детали заказа');
+    cy.get(ORDER_CARD).first().click();
+    cy.get(ORDER_MODAL).should('exist');
+    cy.get(ORDER_MODAL).should('contain.text', 'Детали заказа');
   });
 
   it('should close order modal on close button click', () => {
-    cy.get('[data-testid="order-card"]').first().click();
-    cy.get('[data-testid="order-modal"]').should('exist');
+    cy.get(ORDER_CARD).first().click();
+    cy.get(ORDER_MODAL).should('exist');
 
-    cy.get('[data-testid="modal-close"]').click();
-    cy.get('[data-testid="order-modal"]').should('not.exist');
+    cy.get(MODAL_CLOSE).click();
+    cy.get(ORDER_MODAL).should('not.exist');
   });
 });
