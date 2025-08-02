@@ -28,7 +28,7 @@ const OrderCard: FC<Props> = ({ order, profileMode = false  }) => {
   const path = profileMode ? `/profile/orders/${order.number}` : `/feed/${order.number}`;
 
   return (
-    <Link to={path} state={{ background: location }} className={styles.card}>
+    <Link to={path} state={{ background: location }} className={styles.card} data-testid="order-card">
       <div className={styles.header}>
         <span className="text text_type_digits-default">#{order.number}</span>
         <span className="text text_type_main-default text_color_inactive">{order.createdAt}</span>

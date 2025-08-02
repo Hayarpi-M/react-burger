@@ -9,6 +9,17 @@ import {
   FORGOT_PASSWORD_SUCCESS
 } from '../actions/auth'; 
 
+type TAuthActions =
+  | { type: typeof REGISTER_SUCCESS; payload: { user: any } }
+  | { type: typeof LOGIN_SUCCESS; payload: { user: any } }
+  | { type: typeof LOGOUT_SUCCESS }
+  | { type: typeof AUTH_FAILED }
+  | { type: typeof GET_USER_SUCCESS; payload: { user: any } }
+  | { type: typeof UPDATE_USER_SUCCESS; payload: { user: any } }
+  | { type: typeof FORGOT_PASSWORD_SUCCESS; payload: { email: string } }
+  | { type: typeof RESET_PASSWORD_COMPLETE }
+  | { type: 'AUTH_CHECKED' };
+
 const initialState = {
   user: null,
   isAuthenticated: false, 
@@ -16,7 +27,7 @@ const initialState = {
   canResetPassword: false,
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: TAuthActions) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:

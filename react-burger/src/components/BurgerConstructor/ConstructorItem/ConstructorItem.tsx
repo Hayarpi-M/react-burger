@@ -43,7 +43,11 @@ const ConstructorItem: FC<TConstructorItemProps> = ({ item, index, moveIngredien
   drag(drop(ref));
 
   return (
-    <div ref={ref} className={styles.item} style={{ opacity: isDragging ? 0.5 : 1 }}>
+    <div ref={ref} 
+      className={styles.item} 
+      style={{ opacity: isDragging ? 0.5 : 1 }}
+      data-testid="constructor-main"  
+    >
       <DragIcon type="primary" />
       <ConstructorElement
         text={item.name}

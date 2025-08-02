@@ -12,7 +12,11 @@ type TIngredientCardProps = {
 const IngredientCard: React.FC<TIngredientCardProps> = ({ item, onClick, count }) => {
 
   return (
-      <div onClick={() => {onClick(item)}} className={stylesIngredientCard.IngredientCardWrapper}>
+      <div 
+        onClick={() => {onClick(item)}} 
+        className={stylesIngredientCard.IngredientCardWrapper}
+        data-testid={`ingredient-${item.type}`}
+      >
           {count>0 && <Counter count={count} size="default" />}
           <img src={item.image} alt={item.name} className="ml-4 mr-4" />
           <div className= {`mt-1 mb-1 ${stylesIngredientCard.priceWrapper}`}>
