@@ -1,4 +1,6 @@
 export const BASE_URL = 'https://norma.nomoreparties.space/api';
+export const BASE_URL = 'https://norma.education-services.ru/api';
+
 
 export const checkResponse = async <T>(res: Response): Promise<T> => {
    if (res.ok) {
